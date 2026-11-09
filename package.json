@@ -1,0 +1,19 @@
+{
+  "name": "api_autotest_klg",
+  "version": "1.0.0",
+  "description": "API Automation Testing dengan Playwright TypeScript untuk Swagger Petstore User module",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:user": "playwright test tests/user.spec.ts",
+    "test:debug": "playwright test --debug",
+    "show-report": "playwright show-report"
+  },
+  "author": "Hisyam Hasibuan",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.50.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  }
+}
