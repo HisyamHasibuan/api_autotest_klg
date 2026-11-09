@@ -10,7 +10,7 @@ export class UserApi {
     this.baseUrl = baseUrl;
   }
 
-  async createUser(user: User): Promise<APIResponse> {
+  async createUser(user: User | Record<string, unknown>): Promise<APIResponse> {
     return await this.request.post(`${this.baseUrl}/user`, {
       data: user,
       headers: {
@@ -19,15 +19,40 @@ export class UserApi {
     });
   }
 
+  async createUserRaw(body: string, contentType: string = 'application/json'): Promise<APIResponse> {
+    return await this.request.post(`${this.baseUrl}/user`, {
+      data: body,
+      headers: {
+        'Content-Type': contentType,
+      },
+    });
+  }
+
   async getUserByUsername(username: string): Promise<APIResponse> {
     return await this.request.get(`${this.baseUrl}/user/${username}`);
   }
 
-  async updateUser(username: string, updatedUser: User): Promise<APIResponse> {
+  async updateUser(
+    username: string,
+    updatedUser: User | Record<string, unknown>
+  ): Promise<APIResponse> {
     return await this.request.put(`${this.baseUrl}/user/${username}`, {
       data: updatedUser,
       headers: {
         'Content-Type': 'application/json',
+      },
+    });
+  }
+
+  async updateUserRaw(
+    username: string,
+    body: string,
+    contentType: string = 'application/json'
+  ): Promise<APIResponse> {
+    return await this.request.put(`${this.baseUrl}/user/${username}`, {
+      data: body,
+      headers: {
+        'Content-Type': contentType,
       },
     });
   }

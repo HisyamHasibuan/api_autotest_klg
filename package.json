@@ -1,7 +1,7 @@
 {
   "name": "api_autotest_klg",
   "version": "1.0.0",
-  "description": "API Automation Testing dengan Playwright TypeScript untuk Swagger Petstore User module",
+  "description": "API automation testing with Playwright TypeScript for Swagger Petstore User module",
   "main": "index.js",
   "scripts": {
     "test": "playwright test",

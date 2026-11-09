@@ -1,29 +1,13 @@
 # api_autotest_klg
 
-Proyek otomasi pengujian API Swagger Petstore (Module User) menggunakan **Playwright** dan **TypeScript** dengan konsep **Page Object Model (POM)**.
+API test automation for Swagger Petstore (User module) using **Playwright** and **TypeScript** with the **Page Object Model (POM)** pattern.
 
 **Author:** Hisyam Hasibuan
 
----
-
-## Struktur Folder
-
-```text
-api_autotest_klg/
-├── api/
-│   └── user.api.ts         # Class POM UserApi
-├── models/
-│   └── user.model.ts       # Interface User
-├── tests/
-│   └── user.spec.ts        # Test cases module User
-├── playwright.config.ts    # Konfigurasi Playwright
-├── package.json
-└── README.md
-```
 
 ---
 
-## Cara Menjalankan
+## How to Run
 
 ### 1. Install dependencies
 ```bash
@@ -35,28 +19,38 @@ npm install
 npx playwright install
 ```
 
-### 3. Run test
+### 3. Run tests
 ```bash
-# Jalankan seluruh test
+# Run all tests
 npm test
 
-# Atau jalankan khusus file user
+# Or run only the user tests
 npm run test:user
 ```
 
-### 4. Buka report
+### 4. Open report
 ```bash
 npm run show-report
 ```
 
 ---
 
-## Test Cases yang Dicakup
+## Test Cases Covered
 
-1. `POST /user` - Create user baru
-2. `GET /user/{username}` - Get data user by username
-3. `PUT /user/{username}` - Update data user
-4. `GET /user/login` - Login user
-5. `GET /user/logout` - Logout user
-6. `DELETE /user/{username}` - Hapus user dan validasi 404
-7. `GET /user/{random}` - Negative test user not found (404)
+### POST /user - Create user
+1. Positive: create user with valid required data
+2. Positive: create user with complete data and verify by GET
+3. Negative: create user when body is an array
+4. Negative: create user with invalid JSON body
+
+### GET /user/{username} - Get user by username
+5. Positive: get existing user by username
+6. Positive: return correct user detail fields
+7. Negative: get non-existing username returns 404
+8. Negative: get with empty username path fails
+
+### PUT /user/{username} - Update user
+9. Positive: update existing user data
+10. Positive: persist updated user data after GET
+11. Negative: update with empty username path fails
+12. Negative: update user with invalid JSON body
